@@ -18,9 +18,9 @@ class ContactController extends Controller
        }
     }
 
-    public function index(Contact $contact)
+    public function index()
     {   
-        $contact = $contact->latest()->get();
+        $contact = $this->model::latest()->get();
         if(method_exists(Repository::class,'loadView')){
             return $this->repository->loadView('welcome',$contact);
         }
@@ -37,7 +37,7 @@ class ContactController extends Controller
 
     public function edit($id)
     {
-        $contact = Contact::find($id);
+        $contact = $this->model::find($id);
         if(method_exists(Repository::class,'loadView')){
             return $this->repository->loadView('edit',$contact);
         }
